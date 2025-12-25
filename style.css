@@ -1995,3 +1995,9 @@ font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
   color: #ffcc00;
   text-shadow: 0 0 8px rgba(255, 204, 0, 0.6); /* แสงเรืองรอง */
 }
+/* เสริมพื้นที่กดปุ่มปิดในมือถือ */
+.close-player {
+  padding: 12px !important; /* เพิ่มพื้นที่รับนิ้วมือ */
+  z-index: 999999 !important; /* มั่นใจว่าอยู่บนสุด */
+  pointer-events: auto !important; /* บังคับให้รับแรงสัมผัส */
+}
