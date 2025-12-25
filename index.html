@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="cp.scss">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Questrial">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js"></script>
 </head>
 <body>
     <header>
@@ -30,7 +35,86 @@
     </header>
 
     <main>
+        <style>
+body:before {
+content: " ";
+height: 100vh;
+width: 100vw;
+display: block;
+position: fixed; 
+top: 0; 
+left: 0; 
+z-index: 100;
+background-image: url('https://64.media.tumblr.com/b329e3f256d1d229f773c710d9ec40e6/tumblr_pfbg20F2lz1ufsyoco1_540.gifv');
+background-size: cover;
+background-repeat: no-repeat;
+background-position:center;
+animation: yourAnimation 1s ease 0s 1 normal forwards;
+pointer-events: none;}
+@keyframes yourAnimation { 0.0%{ opacity: 1;} 75%{ opacity: 1; } 100%{ opacity: 0;} } 
+</style>
+
         <section id="home" class="section home">
+            <div id="player">
+                <div class="close-player"><i class="fas fa-times"></i></div>
+
+<div id="show-player-btn"><i class="fas fa-music"></i></div>
+  <div class="album">
+    <div class="thunderbolt"><i class="fas fa-bolt"></i></div>
+  </div>
+  <div class="info">
+    <div class="equalizer">
+      <span class="bar bar1"></span>
+      <span class="bar bar2"></span>
+      <span class="bar bar3"></span>
+      <span class="bar bar4"></span>
+    </div>
+    <div class="progress-bar">
+      <div class="time--current">0:00</div>
+      <div class="time--total">-0:00</div>
+      <div class="fill"></div>
+      <div class="thumb"></div>
+    </div>
+    <div class="currently-playing">
+      <h2 class="song-name"></h2>
+      <h3 class="artist-name"></h3>
+    </div>
+    <div class="controls-wrapper">
+      <div class="controls">
+        <div class="option">
+          <abbr title="Options"><i class="fas fa-bars"></i></abbr>
+        </div>
+        <div class="volume">
+          <abbr title="Volume"><i class="fas fa-volume-up"></i></abbr>
+          <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volume control slider">
+        </div>
+        <div class="previous">
+          <abbr title="Previous Track"><i class="fas fa-backward"></i></abbr>
+        </div>
+        <div class="play">
+          <abbr title="Play"><i class="fas fa-play"></i></abbr>
+        </div>
+        <div class="pause">
+          <abbr title="Pause"><i class="fas fa-pause"></i></abbr>
+        </div>
+        <div class="next">
+          <abbr title="Next Track"><i class="fas fa-forward"></i></abbr>
+        </div>
+        <div class="shuffle">
+          <abbr title="Shuffle Play"><i class="fas fa-random"></i></abbr>
+        </div>
+        <div class="add">
+          <abbr title="Add Local Song"><i class="fas fa-plus"></i></abbr>
+        </div>
+      </div>
+
+      <div class="options-panel">
+        <ul class="song-list">
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
             <div class="container">
                 <div class="home-content">
                     <div class="home-text">
@@ -46,7 +130,7 @@ i'm Chat i play story game,‎ play piano , edit amv , fast typing pratice‎ �
                                 <span class="stat-label">Fooled Victims</span>
                             </div>
                             <div class="stat">
-                                <span class="stat-number">1262+</span>
+                                <span class="stat-number">100+</span>
                                 <span class="stat-label">Games Played</span>
                             </div>
                             <div class="stat">
@@ -56,27 +140,24 @@ i'm Chat i play story game,‎ play piano , edit amv , fast typing pratice‎ �
                         </div>
 
                         <div class="hero-actions">
+                            <a href="https://www.secretmessage.link/secret/694d405f009f0/">
                             <button class="hire-btn primary">
                                 <span>Message Me</span>
                                 <i class="fas fa-arrow-right"></i>
                             </button>
-                            <button class="hire-btn secondary">
-                                <i class="fas fa-download"></i>
-                                <span>??</span>
-                            </button>
                         </div>
 
                         <div class="social-links">
-                            <a href="#" aria-label="WhatsApp" class="social-icon whatsapp">
-                                <i class="fab fa-whatsapp"></i>
+                            <a href="https://www.youtube.com/@chatkunggamertv2206" aria-label="Youtube" class="social-icon whatsapp">
+                                <i class="fab fa-youtube"></i>
                             </a>
-                            <a href="#" aria-label="LinkedIn" class="social-icon linkedin">
-                                <i class="fab fa-linkedin-in"></i>
+                            <a href="https://www.facebook.com/ckgis.comback/" aria-label="facebook" class="social-icon linkedin">
+                                <i class="fab fa-facebook"></i>
                             </a>
-                            <a href="#" aria-label="GitHub" class="social-icon github">
+                            <a href="https://github.com/chatking12345" aria-label="GitHub" class="social-icon github">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="#" aria-label="Instagram" class="social-icon instagram">
+                            <a href="https://www.instagram.com/floppy_diskver1/" aria-label="Instagram" class="social-icon instagram">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </div>
@@ -119,7 +200,7 @@ i'm Chat i play story game,‎ play piano , edit amv , fast typing pratice‎ �
                                 <i class="fas fa-graduation-cap"></i>
                                 <div>
                                     <h4>Education</h4>
-                                    <p>Information Technology: ITe</p>
+                                    <p>Information Technology: IT</p>
                                 </div>
                             </div>
                             <div class="highlight">
@@ -140,16 +221,98 @@ i'm Chat i play story game,‎ play piano , edit amv , fast typing pratice‎ �
                         </div>
 
                         <div class="about-actions">
-                            <button class="about-btn">
-                                <span>Download CV</span>
-                                <i class="fas fa-download"></i>
-                            </button>
+                            <p><img src="https://media.tenor.com/_mnwA4NjkxYAAAAM/heart-undertale.gif" 
+         alt="Determination Heart" 
+         style="width: 40px; vertical-align: middle; margin-right: 14px;">Determination, the Ability to move forward despite any possible hardship, the promise to return for a second chance no matter how much you're beaten and bloody. The power of Determination has sculpted legends for all of humanity, impossible feats, one in a million shots made like they're nothing, while those that pull them off stand alone.
+
+Enigmatic and masterful in execution, Determination is capable of embodying the positive and negative aspects of any part of humanity, capable of both mercy and murder, friendship and scorn, creation and destruction- and this is not just from the prospect of a forward marching timeline. Determination believes themselves above consequences, and it's never a question of "Right or Wrong" but instead "Right AND Wrong". Determination will not stop with saving the world, Determination will continue to destroy it as well, seeing their lives flash through their eyes simply because they've tasted the other side and want more.</p>
+                    
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+        <section id="skills" class="section skills">
+            <div class="container">
+                <h2 class="section-title">My Collection</h2>
+                
+                <div class="cards-grid">
+                    <div class="tech-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=500" alt="Project 1" class="card-img">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-tag">Development</div>
+                            <h3 class="card-title">RPG Engine Core</h3>
+                            <p class="card-desc">
+                                A custom RPG Maker script allowing for horror-based interactive events and dynamic lighting systems.
+                            </p>
+                            <a href="#" class="card-link">View Details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1555685812-4b943f3bec0f?auto=format&fit=crop&q=80&w=500" alt="Project 2" class="card-img">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-tag">Gaming</div>
+                            <h3 class="card-title">Speedrun Records</h3>
+                            <p class="card-desc">
+                                Documenting my journey in breaking records for classic horror eroge interactive adventure games.
+                            </p>
+                            <a href="#" class="card-link">Watch Replays <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1614741118868-607de6955900?auto=format&fit=crop&q=80&w=500" alt="Project 3" class="card-img">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-tag">Music</div>
+                            <h3 class="card-title">Piano Covers</h3>
+                            <p class="card-desc">
+                                High-speed typing practice converted into musical rhythm. AMV editing and composition.
+                            </p>
+                            <a href="#" class="card-link">Listen Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1555685812-4b943f3bec0f?auto=format&fit=crop&q=80&w=500" alt="Project 2" class="card-img">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-tag">Gaming</div>
+                            <h3 class="card-title">Speedrun Records</h3>
+                            <p class="card-desc">
+                                Documenting my journey in breaking records for classic horror eroge interactive adventure games.
+                            </p>
+                            <a href="#" class="card-link">Watch Replays <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1555685812-4b943f3bec0f?auto=format&fit=crop&q=80&w=500" alt="Project 2" class="card-img">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-tag">Gaming</div>
+                            <h3 class="card-title">Speedrun Records</h3>
+                            <p class="card-desc">
+                                Documenting my journey in breaking records for classic horror eroge interactive adventure games.
+                            </p>
+                            <a href="#" class="card-link">Watch Replays <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
 </main>
 
 <script src="script.js"></script>

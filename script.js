@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Professions for typewriter effect
     const professions = [
     'Chat',
-    'Amnesia'
+    'Amnesia',
+    'HAL',
+    'IBM5100'
 ];
 
     // Typewriter Effect
@@ -528,3 +530,270 @@ if ('serviceWorker' in navigator) {
         //     .catch(error => console.log('SW registration failed'));
     });
 }
+
+
+// --- MSQ Player JS Start ---
+$(document).ready(function () {
+  const playlist = [
+    {
+      name: "Driving With the Top Down",
+      artist: "Ramin Djawadi",
+      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Driving-With-the-Top-Down.mp3"
+    },
+    {
+      name: "Pacific Rim",
+      artist: "Ramin Djawadi",
+      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Pacific-Rim.mp3"
+    },
+    {
+      name: "What Are You Going To Do When You Are Not Saving the World",
+      artist: "Hans Zimmer",
+      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/What-Are-You-Going-To-Do-When-You-Are-Not-Saving-the-World.mp3"
+    },
+    {
+      name: "Cornfield Chase",
+      artist: "Hans Zimmer",
+      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Cornfield-Chase.mp3"
+    },
+    {
+      name: "Survival Of The Fittest",
+      artist: "Tim Despic",
+      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Survival-Of-The-Fittest.mp3"
+    }
+  ];
+
+  // ตั้งค่าเริ่มต้น (ลดการประกาศซ้ำซ้อน)
+  let currentTrack = Math.floor(Math.random() * playlist.length);
+  let audioPlayer = new Audio(playlist[currentTrack].src); 
+  let isShuffle = false;
+  let isScrubbing = false;
+  let scrubPreviewTime = 0;
+
+  const updateSongDetails = () => {
+    const song = playlist[currentTrack];
+    $(".song-name").text(song.name);
+    $(".artist-name").text(song.artist);
+
+    if (song.name.length > 25) {
+      $(".song-name").addClass("scroll");
+    } else {
+      $(".song-name").removeClass("scroll");
+    }
+
+    if (!audioPlayer.src.includes(song.src)) {
+      audioPlayer.src = song.src;
+      audioPlayer.load();
+    }
+  };
+
+  const playTrack = () => {
+    updateSongDetails();
+    audioPlayer.play().catch(e => console.log("Autoplay waiting for user interaction"));
+    $(".play").hide();
+    $(".pause").show();
+    $(".equalizer").removeClass("paused");
+  };
+
+  const pauseTrack = () => {
+    audioPlayer.pause();
+    $(".play").show();
+    $(".pause").hide();
+    $(".equalizer").addClass("paused");
+  };
+
+  function formatTime(seconds) {
+    if (isNaN(seconds)) return "0:00";
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+    return `${min}:${sec < 10 ? "0" : ""}${sec}`;
+  }
+
+  // --- Controls ---
+  $(".play").click(() => playTrack());
+  $(".pause").click(() => pauseTrack());
+
+  $(".next").click(() => {
+    currentTrack = isShuffle ? Math.floor(Math.random() * playlist.length) : (currentTrack + 1) % playlist.length;
+    playTrack();
+  });
+
+  $(".previous").click(() => {
+    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+    playTrack();
+  });
+
+  $(".shuffle").click(function () {
+    $(this).toggleClass("clicked");
+    isShuffle = $(this).hasClass("clicked");
+  });
+
+  $(".thunderbolt").click(() => $(".thunderbolt").toggleClass("clicked"));
+  
+  $("#player").hover(
+    () => $(".info").addClass("up"),
+    () => $(".info").removeClass("up")
+  );
+// --- ระบบลาก (Draggable) แก้ไขแบบป้องกันการหาย ---
+  let isDragging = false;
+  let startPos = { x: 0, y: 0 };
+
+  $("#player").on("mousedown", function(e) {
+    // ถ้ากดโดนปุ่มควบคุม จะไม่ลาก
+    if ($(e.target).closest('.controls, .progress-bar, .volume-slider, .option, .add').length) return;
+    
+    isDragging = true;
+    
+    // ตั้งค่าตำแหน่งเริ่มต้นให้เป็น Fixed ทันทีที่เริ่มลาก เพื่อไม่ให้มันกระโดด
+    const rect = this.getBoundingClientRect();
+    $(this).css({
+      position: 'fixed',
+      margin: 0,
+      left: rect.left + 'px',
+      top: rect.top + 'px',
+      right: 'auto',
+      bottom: 'auto',
+      transition: 'none' // ปิด transition ขณะลาก
+    });
+
+    startPos.x = e.clientX - rect.left;
+    startPos.y = e.clientY - rect.top;
+  });
+
+  $(document).on("mousemove", function(e) {
+    if (isDragging) {
+      let left = e.clientX - startPos.x;
+      let top = e.clientY - startPos.y;
+      
+      $("#player").css({
+        left: left + 'px',
+        top: top + 'px'
+      });
+    }
+  });
+
+  $(document).on("mouseup", function() {
+    if (isDragging) {
+      isDragging = false;
+      // คืนค่า transition เพื่อให้ hover สวยเหมือนเดิม
+      $("#player").css("transition", "all 0.5s ease-in-out");
+    }
+  });
+  // --- ระบบ ปิด/เปิด เครื่องเล่น (Toggle Show-Hide) ---
+  
+  // --- ระบบ ปิด/เปิด เครื่องเล่น (แก้ไขให้คลิกติดแน่นอน) ---
+  $(document).on("click", ".close-player", function(e) {
+    e.preventDefault();
+    e.stopPropagation(); // กันไม่ให้ระบบลากทำงานซ้อน
+    $("#player").fadeOut(200); // ลดตัวเลขจาก 300 เป็น 200 ให้ปิดไวขึ้น
+    $("#show-player-btn").fadeIn(200).css("display", "flex");
+  });
+
+  $(document).on("click", "#show-player-btn", function() {
+    $(this).fadeOut(200);
+    $("#player").fadeIn(200);
+  });
+
+  // เมื่อกดปุ่มเรียกคืน (ไอคอนเพลง)
+  $(document).on("click", "#show-player-btn", function() {
+    $(this).fadeOut(300); // ปุ่มเรียกคืนหายไป
+    $("#player").fadeIn(300); // เครื่องเล่นเพลงกลับมา
+  });
+  // --- Progress Bar & Scrubbing ---
+  audioPlayer.addEventListener("timeupdate", () => {
+    if (!isScrubbing && audioPlayer.duration) {
+      const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+      $(".fill").css("width", `${percent}%`);
+      $(".thumb").css("left", `${percent}%`);
+      $(".time--current").text(formatTime(audioPlayer.currentTime));
+      $(".time--total").text(`-${formatTime(audioPlayer.duration - audioPlayer.currentTime)}`);
+    }
+  });
+
+  $(".progress-bar").on("mousedown", function (e) {
+    isScrubbing = true;
+    updateScrubPreview(e);
+  });
+
+  $(document).on("mousemove", function (e) {
+    if (isScrubbing) updateScrubPreview(e);
+  });
+
+  $(document).on("mouseup", function () {
+    if (isScrubbing && audioPlayer.duration) {
+      audioPlayer.currentTime = scrubPreviewTime;
+    }
+    isScrubbing = false;
+  });
+
+  function updateScrubPreview(e) {
+    const bar = $(".progress-bar");
+    const offset = bar.offset();
+    const width = bar.width();
+    const x = e.pageX - offset.left;
+    const percent = Math.max(0, Math.min(1, x / width));
+    scrubPreviewTime = percent * audioPlayer.duration;
+    $(".fill").css("width", `${percent * 100}%`);
+    $(".thumb").css("left", `${percent * 100}%`);
+    $(".time--current").text(formatTime(scrubPreviewTime));
+  }
+
+  // --- Volume ---
+  $(".volume-slider").on("input change", function () {
+    audioPlayer.volume = $(this).val();
+    const icon = $(".volume i");
+    if (audioPlayer.volume == 0) icon.attr('class', 'fas fa-volume-mute');
+    else if (audioPlayer.volume < 0.5) icon.attr('class', 'fas fa-volume-down');
+    else icon.attr('class', 'fas fa-volume-up');
+  });
+
+  $(".volume i").on("click", function (e) {
+    e.stopPropagation();
+    $(".volume").toggleClass("active");
+  });
+
+  // --- Playlist Panel ---
+  playlist.forEach((song, index) => {
+    $(".song-list").append(`<li data-index="${index}">${song.name}</li>`);
+  });
+
+  $(".option").click(() => $(".options-panel").stop().slideToggle(200));
+
+  $(".song-list").on("click", "li", function () {
+    currentTrack = parseInt($(this).data("index"));
+    playTrack();
+    $(".options-panel").slideUp();
+  });
+
+  // --- Auto Next ---
+  audioPlayer.addEventListener("ended", () => $(".next").click());
+
+  // --- Keyboard & Initial UI ---
+  $(document).on("keydown", function (e) {
+    if (e.code === "Space" && e.target === document.body) {
+      e.preventDefault();
+      audioPlayer.paused ? playTrack() : pauseTrack();
+    }
+  });
+
+  // --- ระบบพยายามเล่นอัตโนมัติ (Autoplay Fix) ---
+  const autoPlayAttempt = () => {
+    updateSongDetails();
+    audioPlayer.play().then(() => {
+      // ถ้าเล่นได้สำเร็จ
+      $(".play").hide();
+      $(".pause").show();
+      $(".equalizer").removeClass("paused");
+    }).catch(error => {
+      // ถ้าโดน Browser บล็อก จะรอให้ผู้ใช้คลิกหน้าจอ 1 ครั้งแล้วค่อยเล่น
+      console.log("Autoplay blocked. Waiting for user interaction...");
+      $(document).one("click", function() {
+        playTrack();
+      });
+    });
+  };
+
+  // เรียกใช้งานแทน updateSongDetails(); ของเดิม
+  autoPlayAttempt(); 
+});
+// --- MSQ Player JS End ---
+// --- MSQ Player JS End ---

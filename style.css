@@ -1,26 +1,26 @@
 /* CSS Variables */
 :root {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #111111;
-    --bg-tertiary: #1a1a1a;
+    --bg-primary: #050505;
+    --bg-secondary: #0d0d0d;
+    --bg-tertiary: #151515;
     --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
+    --text-secondary: #b0b0b0;
     --text-muted: #666666;
-    --accent-primary: #00d4ff;
-    --accent-secondary: #0099cc;
-    --accent-gradient: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-    --accent-gradient-hover: linear-gradient(135deg, #00bfea 0%, #0088bb 100%);
-    --border-accent: rgba(0, 212, 255, 0.15);
-    --shadow-glow: 0 0 60px rgba(0, 212, 255, 0.15);
-    --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.3);
-    --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.4);
-    --border-radius: 16px;
+    --accent-primary: #00f2ff;
+    --accent-secondary: #bc13fe;
+    --accent-gradient: linear-gradient(135deg, #bc13fe 0%, #00f2ff 100%);
+    --accent-gradient-hover: linear-gradient(135deg, #d41eff 0%, #33f7ff 100%);
+    --border-accent: rgba(188, 19, 254, 0.3);
+    --shadow-glow: 0 0 30px rgba(188, 19, 254, 0.2);
+    --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 0 50px rgba(188, 19, 254, 0.15);
+    --border-radius: 12px;
     --border-radius-pill: 50px;
     --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-fast: all 0.2s ease;
     --transition-spring: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(20, 20, 20, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 * {
@@ -1453,47 +1453,169 @@ header.scrolled {
     box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
 }
 
-/* Responsive Updates */
-@media (max-width: 768px) {
-    .skills-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+/* ==========================================================================
+   CARDS GRID SYSTEM (5 COLUMNS)
+   ========================================================================== */
 
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+/* Layout หลัก: แบ่ง 5 ช่องเท่ากันบนหน้าจอ Desktop */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 1.2rem; /* ระยะห่างพอดีๆ สำหรับ 5 ช่อง */
+    padding: 2rem 0;
+}
 
-    .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+/* Container ของการ์ดแต่ละใบ */
+.tech-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: var(--transition-smooth);
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
+/* Hover Effect: ยกตัวขึ้นและเรืองแสงตามสไตล์เดิม */
+.tech-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 30px rgba(188, 19, 254, 0.25);
+}
 
-    .contact-item {
-        padding: 1.5rem;
-    }
+/* ส่วนรูปภาพ */
+.card-image-wrapper {
+    position: relative;
+    height: 160px; /* ลดความสูงลงเพื่อให้สมดุลกับความกว้าง 5 ช่อง */
+    width: 100%;
+    overflow: hidden;
+}
 
-    .contact-form {
-        padding: 2rem;
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8) contrast(1.1);
+    transition: transform 0.6s ease;
+}
+
+.tech-card:hover .card-img {
+    transform: scale(1.1);
+    filter: brightness(1);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(5, 5, 5, 0.9) 100%);
+    z-index: 1;
+}
+
+/* ส่วนเนื้อหาภายในการ์ด */
+.card-content {
+    padding: 1.2rem;
+    position: relative;
+    z-index: 2;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-tag {
+    font-size: 0.7rem;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.card-desc {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    flex-grow: 1; /* ดันปุ่ม Link ให้ลงไปอยู่ล่างสุดเสมอ */
+}
+
+.card-link {
+    color: var(--accent-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-fast);
+}
+
+.card-link i {
+    transition: transform 0.2s ease;
+}
+
+.card-link:hover {
+    color: var(--accent-primary);
+}
+
+.card-link:hover i {
+    transform: translateX(5px);
+}
+
+/* ==========================================================================
+   RESPONSIVE UPDATES (ปรับจำนวนช่องตามขนาดหน้าจอ)
+   ========================================================================== */
+
+/* หน้าจอแล็ปท็อปทั่วไป (ลดเหลือ 4 ช่อง) */
+@media (max-width: 1400px) {
+    .cards-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
+/* หน้าจอแท็บเล็ตแนวนอน (ลดเหลือ 3 ช่อง) */
+@media (max-width: 1100px) {
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* หน้าจอแท็บเล็ตแนวตั้ง (768px) */
+@media (max-width: 768px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr); /* เหลือ 2 ช่องให้กดง่ายขึ้น */
+        gap: 1.5rem;
+    }
+
+    .skills-grid, .services-grid, .projects-grid, .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-item { padding: 1.5rem; }
+    .contact-form { padding: 2rem; }
+}
+
+/* หน้าจอมือถือ (480px) */
 @media (max-width: 480px) {
-    .skill-category {
-        padding: 1.5rem;
+    .cards-grid {
+        grid-template-columns: 1fr; /* เหลือ 1 ช่องเต็มหน้าจอ */
     }
 
-    .service-card {
-        padding: 2rem;
-    }
-
-    .project-info {
+    .skill-category, .service-card, .project-info {
         padding: 1.5rem;
     }
 
@@ -1508,4 +1630,286 @@ header.scrolled {
         height: 50px;
         font-size: 1.2rem;
     }
+}@import url("https://fonts.googleapis.com/css?family=Questrial");
+
+/* --- ส่วนที่ปรับเพื่อให้แทรกในเว็บหลักได้ (ลบ background body ออก) --- */
+#player {
+  background: #000000;
+  position: fixed; /* แก้เป็น fixed เพื่อให้ลอยทับหน้าเว็บหลัก */
+  top: 90px;      /* ตำแหน่งความสูงจากขอบบน (ปรับตามใจชอบ) */
+  right: 20px;    /* ตำแหน่งระยะห่างจากขอบขวา */
+  z-index: 999;   /* ให้อยู่เหนือเนื้อหาในเว็บ Chat.exe */
+  margin: 0;      /* ลบ margin auto ออกเพื่อให้ชิดขวา */
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba(54, 79, 60, 0.4);
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+/* --- นอกนั้นโค้ดเดิมของคุณทั้งหมด ห้ามแตะตามคำขอครับ --- */
+
+#player:hover {
+  transform: scale(1.05);
+}
+
+.album {
+background: linear-gradient(rgba(54, 79, 60, 0.25), rgba(73, 101, 77, 0.55)),
+    url("https://i.ibb.co/bM0bt8Nk/GHOST-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;       /* แก้จาก 200px เป็น cover เพื่อให้รูปขยายเต็มพื้นที่พอดี */
+  background-position: center;  /* เพิ่มบรรทัดนี้เพื่อให้รูปอยู่ตรงกลาง ไม่เลื่อนลงล่าง */
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;                       /* เพิ่มเลข 0 เพื่อล็อคตำแหน่งให้อยู่บนสุด */
+  left: 0;                      /* เพิ่มเลข 0 เพื่อล็อคตำแหน่งให้อยู่ซ้ายสุด */
+}
+
+.thunderbolt {
+  position: absolute;
+  right: 0;
+  color: #ffffff;
+  margin: 10px;
+  transition: all 0.4s ease;
+}
+
+.equalizer {
+  position: absolute;
+  bottom: 130px;
+  left: 15px;
+  display: flex;
+  align-items: flex-end;
+  height: 30px;
+  gap: 3px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.equalizer .bar {
+  width: 4px;
+  background: #ffffff;
+  height: 3px;
+  border-radius: 3px;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.equalizer .bar1 { animation-delay: 0s; }
+.equalizer .bar2 { animation-delay: 0.2s; }
+.equalizer .bar3 { animation-delay: 0.4s; }
+.equalizer .bar4 { animation-delay: 0.6s; }
+
+@keyframes bounce {
+  0%, 100% { height: 5px; }
+  50% { height: 20px; }
+}
+
+.clicked {
+  color: #090a09;
+  transform: scale(1.2);
+  transition: all 0.4s ease;
+}
+
+.info {
+    font-size: 0.9em;
+  max-height: 150px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  transform: translateY(35px);
+  transition: all 0.5s ease-in-out;
+}
+
+.up { transform: translateY(0px); }
+
+.info::-webkit-scrollbar { width: 6px; }
+.info::-webkit-scrollbar-thumb {
+  background-color: #8ba989;
+  border-radius: 3px;
+}
+
+.progress-bar {
+  height: 5px;
+  margin-top: 2px;
+  width: 73%;
+  margin: 6% auto;
+  background: #d8e1c3;
+  border-radius: 10px;
+  font-family: "Questrial", sans-serif;
+  cursor: pointer;
+}
+
+.fill {
+  background-color: #859e63;
+  width: 35%;
+  height: 0.3rem;
+  border-radius: 2px;
+}
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  bottom: 200px;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #49654d;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, left 0.2s ease;
+}
+
+.progress-bar:hover .thumb { opacity: 1; }
+
+.time--current, .time--total {
+  color: #ffffff;
+  font-size: 10px;
+  position: absolute;
+  margin-top: -2px;
+}
+
+.time--current { left: 15px; }
+.time--total { right: 15px; }
+
+.currently-playing { text-align: center; margin-top: -3px; }
+
+.song-name, .artist-name {
+  font-family: "Questrial", sans-serif;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.song-name {
+  font-size: 0.8em;
+  letter-spacing: 3px;
+  color: #ffffff;
+}
+
+.artist-name {
+  font-size: 0.6em;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  margin-top: 5px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  gap: 12px;
+  justify-content: center;
+  color: white;
+}
+
+.controls .play, .controls .pause { margin: 15px 25px; color: white; }
+.controls .option { left: 10px; position: absolute; font-size: 0.8em; }
+.controls .add { right: 10px; position: absolute; font-size: 0.8em; }
+.controls .volume { margin-right: 30px; font-size: 0.8em; }
+.controls .shuffle { margin-left: 30px; font-size: 0.8em; }
+
+.play, .pause, .next, .previous, .option, .add, .volume, .shuffle {
+  transition: all 0.5s ease;
+}
+
+.play:hover, .pause:hover, .next:hover, .previous:hover, .option:hover, .add:hover, .volume:hover, .shuffle:hover {
+  color: grey;
+}
+
+footer {
+  position: fixed; /* เปลี่ยนเป็น fixed เพื่อให้ไม่เลื่อนตามหน้าเพจ */
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.5em;
+  text-transform: uppercase;
+  padding: 10px;
+  color: #49654d;
+  letter-spacing: 3px;
+  font-family: "Questrial", sans-serif;
+}
+
+footer a { color: #ffffff; text-decoration: none; }
+footer a:hover { color: #49654d; }
+
+/* --- Playlist & Panels --- */
+.options-panel {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.options-panel ul { margin: 0; padding: 10px; list-style: none; }
+.options-panel ul li {
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #364f3c;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.options-panel ul li:hover { background-color: #f0f0f0; }
+
+.volume { position: relative; display: flex; align-items: center; gap: 5px; }
+.volume-slider {
+  position: absolute;
+  bottom: 180%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 5px;
+  appearance: none;
+  background: #d8e1c3;
+  border-radius: 50px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.volume.active .volume-slider {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* Hide scrollbars but keep functionality */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+/* ปุ่ม X มุมซ้ายบนของเครื่องเล่น */
+.close-player {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #ffffff;    /* เปลี่ยนจาก rgba เป็นสีขาวสดให้เห็นชัดๆ */
+  cursor: pointer;
+  z-index: 9999;     /* ใส่เลขเยอะๆ เพื่อให้มันลอยอยู่บนสุดของทุกเลเยอร์ */
+  font-size: 18px;   /* เพิ่มขนาดจาก 14px เป็น 18px ให้กดง่ายขึ้น */
+  transition: color 0.3s;
+}
+
+.close-player:hover {
+  color: #ff4d4d;   /* เวลาชี้ให้เป็นสีแดง */
 }
