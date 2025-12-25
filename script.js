@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Professions for typewriter effect
     const professions = [
-        'Full-Stack Developer',
-        'Frontend Engineer', 
-        'Backend Developer',
-        'UI/UX Enthusiast',
-        'Problem Solver',
-        'Tech Innovator'
-    ];
+    'The Mastermind',
+    'Strategic Manipulator',
+    'Cognitive Architect',
+    'Deception Specialist',
+    'Logic Solver',
+    'Diabolical Strategist'
+];
 
     // Typewriter Effect
     let professionIndex = 0;
