@@ -863,4 +863,4 @@ $(".song-list").on("click", "li", function () {
             $("#player").css("transition", "all 0.5s ease-in-out");
         }
     });
-})();
+})();n
