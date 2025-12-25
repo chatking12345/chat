@@ -811,3 +811,56 @@ $(document).on("click", ".close-options", function() {
 $(".song-list").on("click", "li", function () {
   $(".options-panel").fadeOut(200);
 });
+// --- ส่วนเสริม: บังคับให้ลากได้ทั้งคอมและมือถือ (วางต่อท้ายสุด) ---
+(function() {
+    let dragging = false;
+    let offset = { x: 0, y: 0 };
+
+    // ฟังก์ชันช่วยดึงค่าตำแหน่ง (รองรับทั้งนิ้วและเมาส์)
+    const getPos = (e) => {
+        if (e.touches && e.touches.length > 0) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        return { x: e.clientX, y: e.clientY };
+    };
+
+    // เมื่อเริ่มแตะหรือกด
+    $(document).on("mousedown touchstart", "#player", function(e) {
+        // ถ้ากดโดนปุ่มควบคุม (Play, Pause, Close) ห้ามลาก
+        if ($(e.target).closest('.controls, .progress-bar, .close-player, .volume-slider').length) return;
+
+        dragging = true;
+        let pos = getPos(e.originalEvent || e);
+        let rect = this.getBoundingClientRect();
+        
+        offset.x = pos.x - rect.left;
+        offset.y = pos.y - rect.top;
+
+        $(this).css({ transition: "none", position: "fixed" });
+    });
+
+    // เมื่อกำลังลาก
+    $(document).on("mousemove touchmove", function(e) {
+        if (!dragging) return;
+        
+        // กันหน้าจอเว็บเลื่อนขณะลากเพลง
+        if (e.type === "touchmove") e.preventDefault();
+
+        let pos = getPos(e.originalEvent || e);
+        let left = pos.x - offset.x;
+        let top = pos.y - offset.y;
+
+        $("#player").css({
+            left: left + "px",
+            top: top + "px",
+            bottom: "auto",
+            right: "auto"
+        });
+    }, { passive: false });
+
+    // เมื่อปล่อยมือ
+    $(document).on("mouseup touchend", function() {
+        if (dragging) {
+            dragging = false;
+            $("#player").css("transition", "all 0.5s ease-in-out");
+        }
+    });
+})();
