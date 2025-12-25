@@ -802,3 +802,12 @@ $(document).ready(function () {
 });
 // --- MSQ Player JS End ---
 // --- MSQ Player JS End ---
+// คลิกที่ปุ่ม X เพื่อปิดหน้าต่างเลือกเพลง
+$(document).on("click", ".close-options", function() {
+  $(".options-panel").fadeOut(200);
+});
+
+// หรือถ้ากดเลือกเพลงแล้ว ก็ให้มันปิดไปด้วยเลย
+$(".song-list").on("click", "li", function () {
+  $(".options-panel").fadeOut(200);
+});

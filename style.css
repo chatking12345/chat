@@ -1857,33 +1857,53 @@ footer a { color: #ffffff; text-decoration: none; }
 footer a:hover { color: #49654d; }
 
 /* --- Playlist & Panels --- */
+/* ใส่ Animation ตอนเปิด */
 .options-panel {
   position: absolute;
-  bottom: 100%;
+  top: 0;
   left: 0;
   width: 100%;
-  max-height: 150px;
-  overflow-y: auto;
-  background: rgba(255, 255, 255, 0.97);
-  border-radius: 8px 8px 0 0;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 5;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
   display: none;
-  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  padding: 40px 10px 10px 10px; /* เว้นที่ให้ปุ่ม X */
+  box-sizing: border-box; /* สำคัญ: กันล้น */
+  animation: fadeIn 0.3s ease-out; /* ใส่แอนิเมชั่น */
 }
 
-.options-panel ul { margin: 0; padding: 10px; list-style: none; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* แก้ข้อความล้นจอ (Song List) */
+.options-panel ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-height: 100%; /* ให้ล้อตามตัวแม่ */
+  overflow-y: auto; /* ถ้าชื่อยาวหรือเพลงเยอะ ให้เลื่อนลงได้ */
+}
+
 .options-panel ul li {
-  padding: 6px 12px;
+  padding: 10px 5px;
+  color: #ffffff;
+  font-size: 11px; /* ปรับขนาดเล็กลงหน่อยเพื่อลดการล้น */
+  border-bottom: 1px solid #222;
   cursor: pointer;
-  font-size: 0.8rem;
-  color: #364f3c;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  
+  /* จัดการข้อความล้นใน 1 บรรทัด */
+  white-space: nowrap;      /* ไม่ให้ขึ้นบรรทัดใหม่ */
+  overflow: hidden;         /* ส่วนที่เกินให้ซ่อน */
+  text-overflow: ellipsis;  /* ใส่ ... ท้ายข้อความ */
 }
 
-.options-panel ul li:hover { background-color: #f0f0f0; }
+.options-panel ul li:hover {
+  background: #49654d;
+  color: #fff;
+}
 
 .volume { position: relative; display: flex; align-items: center; gap: 5px; }
 .volume-slider {
@@ -1933,3 +1953,4 @@ footer a:hover { color: #49654d; }
 .close-player:hover {
   color: #ff4d4d;   /* เวลาชี้ให้เป็นสีแดง */
 }
+.close-options { color: #ff0000 !important; position: absolute; right: 15px; top: 10px; cursor: pointer; }
