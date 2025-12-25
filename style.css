@@ -1801,16 +1801,36 @@ header.scrolled {
   display: flex;
   align-items: center;
   font-size: 0.8em;
-  gap: 12px;
+  
+  /* --- ปรับเลขตรงนี้ --- */
+  gap: 20px;       /* ถ้าอยากให้ปุ่มห่างกันมากขึ้น ให้เพิ่มจาก 12px เป็น 20px หรือมากกว่า */
+  
   justify-content: center;
   color: white;
 }
 
-.controls .play, .controls .pause { margin: 15px 25px; color: white; }
-.controls .option { left: 10px; position: absolute; font-size: 0.8em; }
-.controls .add { right: 10px; position: absolute; font-size: 0.8em; }
-.controls .volume { margin-right: 30px; font-size: 0.8em; }
-.controls .shuffle { margin-left: 30px; font-size: 0.8em; }
+/* 1. ลดระยะห่างซ้าย-ขวาของปุ่ม Play และ Pause (จากเดิม 25px เหลือ 10px) */
+.controls .play, .controls .pause { 
+  margin: 15px 10px; 
+  color: white; 
+}
+
+/* 2. ลดระยะห่างของปุ่ม Volume (จากเดิม 30px เหลือ 5px) */
+.controls .volume { 
+  margin-right: 5px; 
+  font-size: 0.8em; 
+}
+
+/* 3. ลดระยะห่างของปุ่ม Shuffle (จากเดิม 30px เหลือ 5px) */
+.controls .shuffle { 
+  margin-left: 5px; 
+  font-size: 0.8em; 
+}
+
+/* 4. ปรับ Gap รวมของกลุ่มปุ่มให้แคบลง (หาคลาส .controls แล้วแก้บรรทัดนี้) */
+.controls {
+  gap: 8px; /* ลดจาก 12px เหลือ 8px เพื่อให้ทุกอย่างบีบเข้าหากัน */
+}
 
 .play, .pause, .next, .previous, .option, .add, .volume, .shuffle {
   transition: all 0.5s ease;
@@ -1868,9 +1888,9 @@ footer a:hover { color: #49654d; }
 .volume { position: relative; display: flex; align-items: center; gap: 5px; }
 .volume-slider {
   position: absolute;
-  bottom: 180%;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 120%;
+  left: 90px;          /* เปลี่ยนจาก 50% เป็น 90px เพื่อดันไปทางขวา */
+  transform: none;      /* ลบของเดิมที่เขียนว่า translateX(-50%) ออก */
   width: 50px;
   height: 5px;
   appearance: none;
@@ -1886,7 +1906,7 @@ footer a:hover { color: #49654d; }
 .volume.active .volume-slider {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(-2px);
+  transform: translateY(-2px); /* ลบ translateX(-50%) ออกจากบรรทัดนี้ด้วย */
 }
 
 /* Hide scrollbars but keep functionality */
