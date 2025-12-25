@@ -1656,8 +1656,8 @@ header.scrolled {
 }
 
 .album {
-background: linear-gradient(rgba(54, 79, 60, 0.25), rgba(73, 101, 77, 0.55)),
-    url("https://i.ibb.co/bM0bt8Nk/GHOST-1.jpg");
+  background: linear-gradient(rgba(54, 79, 60, 0.25), rgba(73, 101, 77, 0.55)),
+    url("images/C1aF04o.gif");
   background-repeat: no-repeat;
   background-size: cover;       /* แก้จาก 200px เป็น cover เพื่อให้รูปขยายเต็มพื้นที่พอดี */
   background-position: center;  /* เพิ่มบรรทัดนี้เพื่อให้รูปอยู่ตรงกลาง ไม่เลื่อนลงล่าง */

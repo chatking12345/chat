@@ -538,32 +538,32 @@ $(document).ready(function () {
     {
       name: "いかないで / - Thai Piano Version [Lunacat]",
       artist: "Ikanaide",
-      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Driving-With-the-Top-Down.mp3"
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/%5BUndertale%20-%20Asriel%5D%20%E3%81%84%E3%81%8B%E3%81%AA%E3%81%84%E3%81%A7%20_%20Ikanaide%20%20-%20Thai%20Piano%20Version%20%5BLunacat%5D.mp3"
     },
     {
-      name: "Pacific Rim",
-      artist: "Ramin Djawadi",
-      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Pacific-Rim.mp3"
+      name: "Call your name (Lost Girls Ending Theme)",
+      artist: "Hiroyuki Sawano feat. Gemie",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/blame/e39473bcf2cff743986b54fe8a92354140590d8d/song/Attack%20on%20Titan%20OST%20-%20Call%20your%20name%E3%80%8ELost%20Girls%20Ending%20Theme%E3%80%8F.mp3"
     },
     {
-      name: "What Are You Going To Do When You Are Not Saving the World",
-      artist: "Hans Zimmer",
-      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/What-Are-You-Going-To-Do-When-You-Are-Not-Saving-the-World.mp3"
+      name: "Re：ゼロから始める異世界生活 ED",
+      artist: "「STYX HELIX」",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/e39473bcf2cff743986b54fe8a92354140590d8d/song/Re-Zero%20kara%20Hajimeru%20Isekai%20Seikatsu%20Ending%20FULL%20-%20Re%EF%BC%9A%E3%82%BC%E3%83%AD%E3%81%8B%E3%82%89%E5%A7%8B%E3%82%81%E3%82%8B%E7%95%B0%E4%B8%96%E7%95%8C%E7%94%9F%E6%B4%BB%20ED%20%E3%80%8CSTYX%20HELIX%E3%80%8D.mp3"
     },
     {
-      name: "Cornfield Chase",
-      artist: "Hans Zimmer",
-      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Cornfield-Chase.mp3"
+      name: "Last Game",
+      artist: "Zwei",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/e39473bcf2cff743986b54fe8a92354140590d8d/song/Steins%3BGate%200%20Ending%20Full%E3%80%8ELast%20Game%20By%20Zwei%E3%80%8F.mp3"
     },
     {
-      name: "Cornfield Chase",
-      artist: "Hans Zimmer",
-      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Cornfield-Chase.mp3"
+      name: "Leaving Tonight",
+      artist: "The Neighbourhood",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/The%20Neighbourhood%20-%20Leaving%20Tonight%20(Official%20Audio).mp3"
     },
     {
-      name: "Survival Of The Fittest",
-      artist: "Tim Despic",
-      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Survival-Of-The-Fittest.mp3"
+      name: "last summer",
+      artist: "ooes",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/last%20summer%20(sped%20up).mp3"
     }
   ];
 
