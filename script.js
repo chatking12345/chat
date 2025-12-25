@@ -536,8 +536,8 @@ if ('serviceWorker' in navigator) {
 $(document).ready(function () {
   const playlist = [
     {
-      name: "Driving With the Top Down",
-      artist: "Ramin Djawadi",
+      name: "いかないで / - Thai Piano Version [Lunacat]",
+      artist: "Ikanaide",
       src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Driving-With-the-Top-Down.mp3"
     },
     {
@@ -549,6 +549,11 @@ $(document).ready(function () {
       name: "What Are You Going To Do When You Are Not Saving the World",
       artist: "Hans Zimmer",
       src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/What-Are-You-Going-To-Do-When-You-Are-Not-Saving-the-World.mp3"
+    },
+    {
+      name: "Cornfield Chase",
+      artist: "Hans Zimmer",
+      src: "https://raw.githubusercontent.com/SKAL04172247/MUSIC-FILES/main/Cornfield-Chase.mp3"
     },
     {
       name: "Cornfield Chase",
