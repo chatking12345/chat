@@ -811,43 +811,17 @@ $(document).on("click", ".close-options", function() {
 $(".song-list").on("click", "li", function () {
   $(".options-panel").fadeOut(200);
 });
-// --- ส่วนเสริมสำหรับมือถือ (Touch & Close Fix) ---
-$("#player").on("touchstart", function(e) {
-  // ถ้าแตะโดนปุ่มปิดหรือปุ่มควบคุม ให้หยุดการทำงานของระบบลากทันที
-  if ($(e.target).closest('.close-player, .controls, .progress-bar').length) {
-    e.stopPropagation();
-    return;
-  }
-  
-  // เริ่มต้นระบบลากด้วยนิ้ว
-  const touch = e.originalEvent.touches[0];
-  const rect = this.getBoundingClientRect();
-  $(this).data("startX", touch.clientX - rect.left);
-  $(this).data("startY", touch.clientY - rect.top);
-  $(this).data("isDraggingTouch", true);
-});
+// --- บังคับดึงปุ่มปิดมาไว้หน้าสุดและล็อคการกด ---
+$(window).on('load', function() {
+  const closeBtn = $(".close-player");
+  // ย้ายปุ่มปิดไปไว้ล่างสุดของ #player เพื่อให้มันถูกวาดทับเป็นตัวสุดท้าย (ลอยบนสุด)
+  $("#player").append(closeBtn); 
 
-$(document).on("touchmove", function(e) {
-  const player = $("#player");
-  if (player.data("isDraggingTouch")) {
-    e.preventDefault(); // กันหน้าจอเว็บเลื่อน
-    const touch = e.originalEvent.touches[0];
-    player.css({
-      left: (touch.clientX - player.data("startX")) + 'px',
-      top: (touch.clientY - player.data("startY")) + 'px',
-      position: 'fixed',
-      transition: 'none'
-    });
-  }
-}, { passive: false });
-
-$(document).on("touchend", function() {
-  $("#player").data("isDraggingTouch", false).css("transition", "all 0.5s ease-in-out");
-});
-
-// บังคับให้ปุ่มปิดทำงานเมื่อแตะในมือถือ
-$(document).on("touchstart", ".close-player", function(e) {
-  e.preventDefault();
-  $("#player").fadeOut(200);
-  $("#show-player-btn").fadeIn(200).css("display", "flex");
+  // ใช้คำสั่งรับแรงสัมผัสแบบบังคับ (Fast Click)
+  closeBtn.on("touchstart click", function(e) {
+    e.stopImmediatePropagation(); // บังคับหยุดระบบลากและระบบอื่นทุกอย่าง
+    e.preventDefault();
+    $("#player").fadeOut(200);
+    $("#show-player-btn").show().css("display", "flex");
+  });
 });

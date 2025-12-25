@@ -1996,8 +1996,18 @@ font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
   text-shadow: 0 0 8px rgba(255, 204, 0, 0.6); /* แสงเรืองรอง */
 }
 /* เสริมพื้นที่กดปุ่มปิดในมือถือ */
+/* บังคับปุ่มปิดให้ลอยเด่นออกมาจากทุกส่วน */
 .close-player {
-  padding: 12px !important; /* เพิ่มพื้นที่รับนิ้วมือ */
-  z-index: 999999 !important; /* มั่นใจว่าอยู่บนสุด */
-  pointer-events: auto !important; /* บังคับให้รับแรงสัมผัส */
+  position: absolute !important;
+  top: 5px !important;
+  left: 5px !important;
+  width: 35px !important;   /* เพิ่มพื้นที่ตัวเลขเพื่อให้จิ้มง่าย */
+  height: 35px !important;  /* เพิ่มพื้นที่ตัวเลขเพื่อให้จิ้มง่าย */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 2147483647 !important; /* ใช้ตัวเลขสูงสุดที่ Browser จะรับได้ */
+  background: rgba(0,0,0,0.3) !important; /* เพิ่มเงาดำจางๆ ให้เห็นปุ่มชัดขึ้น */
+  border-radius: 50% !important;
+  pointer-events: auto !important;
 }
