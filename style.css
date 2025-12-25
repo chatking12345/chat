@@ -1954,3 +1954,44 @@ footer a:hover { color: #49654d; }
   color: #ff4d4d;   /* เวลาชี้ให้เป็นสีแดง */
 }
 .close-options { color: #ff0000 !important; position: absolute; right: 15px; top: 10px; cursor: pointer; }
+
+.card-rating::before {
+  content: "★★★★★";
+  font-family: "Font Awesome 5 Free"; font-weight: 900;
+  background: linear-gradient(90deg, #ffcc00 calc(var(--rating) * 20%), #444 calc(var(--rating) * 20%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 0.8rem;
+}
+.card-rating::before {
+  content: "★★★★★";
+  font-family: "Font Awesome 5 Free"; font-weight: 900;
+  /* สีพื้นฐานของดาว (ทองผสมเงา) */
+  background: linear-gradient(
+    90deg, 
+    #ffcc00 0%, 
+    #ffffff 50%, 
+    #ffcc00 100%
+  );
+  background-size: 200% auto; /* เตรียมพื้นที่ให้แสงวิ่ง */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* บรรทัดที่ทำให้วูบวาบ */
+  animation: shine 2s linear infinite;
+  
+  /* คุมจำนวนดาวตาม rating เหมือนเดิม */
+  clip-path: inset(0 calc(100% - (var(--rating) * 20%)) 0 0);
+}
+
+/* อนิเมชั่นทำให้แสงวิ่งผ่าน */
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+.card-rating {
+ gap: 6px;           /* เพิ่มระยะห่างระหว่างดาวกับเลข */
+font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
+  font-weight: bold;
+  color: #ffcc00;
+  text-shadow: 0 0 8px rgba(255, 204, 0, 0.6); /* แสงเรืองรอง */
+}

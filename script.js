@@ -543,7 +543,7 @@ $(document).ready(function () {
     {
       name: "Call your name (Lost Girls Ending Theme)",
       artist: "Hiroyuki Sawano feat. Gemie",
-      src: "https://raw.githubusercontent.com/chatking12345/chat/blame/e39473bcf2cff743986b54fe8a92354140590d8d/song/Attack%20on%20Titan%20OST%20-%20Call%20your%20name%E3%80%8ELost%20Girls%20Ending%20Theme%E3%80%8F.mp3"
+      src: "https://raw.githubusercontent.com/chatking12345/chat/e39473bcf2cff743986b54fe8a92354140590d8d/song/Attack%20on%20Titan%20OST%20-%20Call%20your%20name%E3%80%8ELost%20Girls%20Ending%20Theme%E3%80%8F.mp3"
     },
     {
       name: "Re：ゼロから始める異世界生活 ED",
