@@ -14,12 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Professions for typewriter effect
     const professions = [
-    'The Mastermind',
-    'Strategic Manipulator',
-    'Cognitive Architect',
-    'Deception Specialist',
-    'Logic Solver',
-    'Diabolical Strategist'
+    'Chat',
+    'Amnesia'
 ];
 
     // Typewriter Effect
