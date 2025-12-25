@@ -811,17 +811,3 @@ $(document).on("click", ".close-options", function() {
 $(".song-list").on("click", "li", function () {
   $(".options-panel").fadeOut(200);
 });
-// --- บังคับดึงปุ่มปิดมาไว้หน้าสุดและล็อคการกด ---
-$(window).on('load', function() {
-  const closeBtn = $(".close-player");
-  // ย้ายปุ่มปิดไปไว้ล่างสุดของ #player เพื่อให้มันถูกวาดทับเป็นตัวสุดท้าย (ลอยบนสุด)
-  $("#player").append(closeBtn); 
-
-  // ใช้คำสั่งรับแรงสัมผัสแบบบังคับ (Fast Click)
-  closeBtn.on("touchstart click", function(e) {
-    e.stopImmediatePropagation(); // บังคับหยุดระบบลากและระบบอื่นทุกอย่าง
-    e.preventDefault();
-    $("#player").fadeOut(200);
-    $("#show-player-btn").show().css("display", "flex");
-  });
-});
