@@ -356,6 +356,12 @@ header.scrolled {
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
     transition: 0s;
+
+    /* เพิ่มส่วนนี้เข้าไปครับ */
+    display: flex;
+    flex-direction: column; /* จัดเรียงเป็นแนวตั้ง */
+    align-items: center;    /* จัดให้อยู่กึ่งกลางแนวนอน */
+    gap: 0.5rem;            /* ระยะห่างระหว่างตัวเลขกับข้อความ (ปรับได้ตามใจชอบ) */
 }
 
 .stat:hover {
