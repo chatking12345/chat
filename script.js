@@ -835,3 +835,30 @@ $("#player").on("mousedown", function() {
 $(document).on("mouseup", function() {
     $("#player").css("transition", "all 0.5s ease-in-out");
 });
+(function() {
+    const statNumber = document.querySelector('.stat-number');
+    if (!statNumber) return;
+
+    let count = parseInt(statNumber.innerText);
+
+    function increment() {
+        // สุ่มเลขเพิ่ม 1-3
+        const increase = Math.floor(Math.random() * 3) + 1;
+        count += increase;
+        
+        // ใส่ Class สำหรับเอฟเฟกต์กระตุก
+        statNumber.classList.add('updating');
+        statNumber.innerText = count.toLocaleString();
+
+        // เอา Class ออกเพื่อให้รอรับการนับครั้งต่อไป
+        setTimeout(() => {
+            statNumber.classList.remove('updating');
+        }, 150);
+
+        // สุ่มเวลาให้นับใหม่ (ยิ่งเลขน้อยยิ่งนับเร็ว)
+        const nextTime = Math.floor(Math.random() * 1000) + 1000;
+        setTimeout(increment, nextTime);
+    }
+
+    setTimeout(increment, 2000);
+})();

@@ -364,12 +364,29 @@ header.scrolled {
     border-color: var(--accent-primary);
 }
 
+/* สไตล์สำหรับตัวเลข "คนตาย" */
 .stat-number {
-    display: block;
-    font-size: 2rem;
+    color: #ff0000; /* สีแดงเลือด */
+    font-family: 'Courier New', Courier, monospace; /* ฟอนต์แนวเครื่องจักร */
     font-weight: 900;
-    color: var(--accent-primary);
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #800000; /* เรืองแสงสีแดง */
+    transition: all 0.1s ease;
+    display: inline-block;
+}
+
+/* เอฟเฟกต์ตอนเลขขยับ (สะดุดและขยาย) */
+.stat-number.updating {
+    color: #fff; /* กระพริบเป็นสีขาวแวบหนึ่ง */
+    transform: scale(1.2) skewX(-10deg);
+    text-shadow: 0 0 30px #ff0000;
+}
+
+/* ปรับสี Label ให้น่ากลัวเข้ากัน */
+.stat-label {
+    color: #660000; /* แดงเข้มมืดๆ */
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .stat-label {
