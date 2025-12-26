@@ -193,40 +193,25 @@ pointer-events: none;}
 
 <div id="global-tap-layer" 
      onclick="dismissLayer()" 
-     style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 9999999; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.5s ease;">
+     style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 9999999; display: flex; justify-content: center; align-items: center; transition: all 0.5s ease; cursor: default;">
     
-    <h1 style="color: white; font-family: sans-serif; letter-spacing: 5px; animation: blink 1.5s infinite;">TAP ANYWHERE</h1>
+    <h1 style="color: white; font-family: sans-serif; letter-spacing: 5px; user-select: none;">TAP ANYWHERE</h1>
 </div>
-
-<style>
-    /* เอฟเฟกต์ไฟกระพริบเบาๆ ให้รู้ว่าต้องกด */
-    @keyframes blink {
-        0% { opacity: 0.3; }
-        50% { opacity: 1; }
-        100% { opacity: 0.3; }
-    }
-</style>
 
 <script>
     function dismissLayer() {
         const layer = document.getElementById('global-tap-layer');
         
-        // 1. ปิดการรับสัมผัสทันที (ป้องกันการคลิกซ้ำ)
+        // ทำให้คลิกทะลุและจางหาย
         layer.style.pointerEvents = 'none';
-        
-        // 2. ทำเอฟเฟกต์จางหาย
         layer.style.opacity = '0';
-        layer.style.transform = 'scale(1.1)'; // เพิ่มลูกเล่นให้ดูเหมือนขยายหายไป
         
-        // 3. ลบทิ้งจากโค้ดถาวร (ป้องกันการกลับมาบัง)
+        // ลบออกถาวรหลังจางหาย
         setTimeout(() => {
             if (layer && layer.parentNode) {
                 layer.parentNode.removeChild(layer);
             }
         }, 500);
-
-        // (ถ้ามีเสียงเพลง สามารถสั่งให้เล่นตรงนี้ได้เลย)
-        console.log("Site Unlocked");
     }
 </script>
                         <h1 class="hero-title">
