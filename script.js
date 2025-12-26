@@ -913,7 +913,7 @@ async function fetchAndShowCounter() {
     } catch (error) {
         // หากดึงค่าไม่ได้ (เช่น โดนบล็อก) จะแสดงข้อความแจ้งเตือนเบื้องต้น
         console.error("ไม่สามารถเชื่อมต่อ API ได้:", error);
-        visitsElement.innerText = "เปิดBlockAdsทำควยไร"; 
+        visitsElement.innerText = "Disable BlockAds :3"; 
     }
 }
 
