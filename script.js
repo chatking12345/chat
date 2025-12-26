@@ -22,36 +22,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Typewriter Effect
     let professionIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 150;
+const glitchChars = "!<>-_\\/[]{}—=+*^?#________";
 
-    function typeWriter() {
-        if (!heroSubtitle) return;
-        
-        const currentProfession = professions[professionIndex];
-        
-        if (isDeleting) {
-            heroSubtitle.innerHTML = "I'm a " + currentProfession.substring(0, charIndex - 1) + '<span class="cursor">|</span>';
-            charIndex--;
-            typingSpeed = 75;
-        } else {
-            heroSubtitle.innerHTML = "I'm a " + currentProfession.substring(0, charIndex + 1) + '<span class="cursor">|</span>';
-            charIndex++;
-            typingSpeed = 150;
+function glitchText(element, finalText, duration = 800) {
+    let start = Date.now();
+
+    const interval = setInterval(() => {
+        const elapsed = Date.now() - start;
+        const progress = elapsed / duration;
+
+        if (progress >= 1) {
+            element.innerHTML = `I'm a <span class="glitch" data-text="${finalText}">${finalText}</span>`;
+            clearInterval(interval);
+            return;
         }
 
-        if (!isDeleting && charIndex === currentProfession.length) {
-            typingSpeed = 2000; // Pause at end
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            professionIndex = (professionIndex + 1) % professions.length;
-            typingSpeed = 500; // Pause before next word
-        }
+        const scrambled = finalText
+            .split("")
+            .map((char, i) => {
+                if (Math.random() < progress) return char;
+                return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+            })
+            .join("");
 
-        setTimeout(typeWriter, typingSpeed);
-    }
+        element.innerHTML = `I'm a <span class="glitch" data-text="${finalText}">${scrambled}</span>`;
+    }, 40);
+}
+
+function startGlitchCycle() {
+    if (!heroSubtitle) return;
+
+    const text = professions[professionIndex];
+    glitchText(heroSubtitle, text);
+
+    professionIndex = (professionIndex + 1) % professions.length;
+    setTimeout(startGlitchCycle, 2500); // เวลารอเปลี่ยนคำ
+}
+
+startGlitchCycle();
+
 
     // Mobile Menu Toggle
     function toggleMobileMenu() {
