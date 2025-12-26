@@ -862,3 +862,4 @@ $(document).on("mouseup", function() {
 
     setTimeout(increment, 2000);
 })();
+
