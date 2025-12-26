@@ -191,35 +191,42 @@ pointer-events: none;}
     }
 </style>
 
-<div id="tap-overlay-full" 
-     onclick="forceRemoveOverlay()" 
-     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; justify-content: center; align-items: center; z-index: 9999999; cursor: pointer; transition: opacity 0.5s ease;">
+<div id="global-tap-layer" 
+     onclick="dismissLayer()" 
+     style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 9999999; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.5s ease;">
     
-    <div class="tap-text" style="color: white; font-size: 3rem; font-weight: bold; border: 4px solid white; padding: 20px 40px; border-radius: 50px;">
-        TAP ME
-    </div>
+    <h1 style="color: white; font-family: sans-serif; letter-spacing: 5px; animation: blink 1.5s infinite;">TAP ANYWHERE</h1>
 </div>
 
+<style>
+    /* เอฟเฟกต์ไฟกระพริบเบาๆ ให้รู้ว่าต้องกด */
+    @keyframes blink {
+        0% { opacity: 0.3; }
+        50% { opacity: 1; }
+        100% { opacity: 0.3; }
+    }
+</style>
+
 <script>
-    function forceRemoveOverlay() {
-        const el = document.getElementById('tap-overlay-full');
+    function dismissLayer() {
+        const layer = document.getElementById('global-tap-layer');
         
-        // 1. ทำให้คลิกทะลุได้ทันที (แก้บัคคลิกไม่ได้)
-        el.style.pointerEvents = 'none';
+        // 1. ปิดการรับสัมผัสทันที (ป้องกันการคลิกซ้ำ)
+        layer.style.pointerEvents = 'none';
         
-        // 2. เริ่มทำเอฟเฟกต์จางหาย
-        el.style.opacity = '0';
+        // 2. ทำเอฟเฟกต์จางหาย
+        layer.style.opacity = '0';
+        layer.style.transform = 'scale(1.1)'; // เพิ่มลูกเล่นให้ดูเหมือนขยายหายไป
         
-        // 3. (สำคัญที่สุด) สั่งลบ Element นี้ทิ้งไปจากไฟล์ HTML เลย 
-        // เพื่อให้มั่นใจว่ามันจะไม่กลับมาขวางหน้าจออีก
+        // 3. ลบทิ้งจากโค้ดถาวร (ป้องกันการกลับมาบัง)
         setTimeout(() => {
-            if (el && el.parentNode) {
-                el.parentNode.removeChild(el);
+            if (layer && layer.parentNode) {
+                layer.parentNode.removeChild(layer);
             }
-        }, 500); // ลบทิ้งหลังจากผ่านไป 0.5 วินาที
-        
-        // 4. ถ้าคุณมีฟังก์ชัน Typewriter หรือเพลง ให้สั่งเริ่มตรงนี้ได้เลย
-        console.log("Overlay destroyed successfully.");
+        }, 500);
+
+        // (ถ้ามีเสียงเพลง สามารถสั่งให้เล่นตรงนี้ได้เลย)
+        console.log("Site Unlocked");
     }
 </script>
                         <h1 class="hero-title">
