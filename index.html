@@ -128,33 +128,13 @@ pointer-events: none;}
                        <div class="greeting-container" style="display: flex; align-items: center; gap: 10px;">
     <div class="greeting">hello world</div>
     
-    <h1 style="margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
-        <i class="fas fa-eye" style="color: #555;"></i>
-        This site has been visited <span id="visits" style="font-weight: bold; color: #007bff;">...</span> times.
-    </h1>
+  <h1 style="margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+    <i class="fas fa-eye" style="color: #555;"></i>
+    This site has been visited <span id="visits" style="font-weight: bold; color: #007bff;">...</span> times.
+</h1>
 </div>
 
-<script>
-    async function updateCounter() {
-        const namespace = "antagonist-pariomanias-team-2275"; // ใส่ slug ของคุณที่นี่
-        const key = "page-views"; // ตั้งชื่อ key สำหรับนับ
-        
-        try {
-            // เรียก API เพื่อเพิ่มจำนวน (Hit)
-            const response = await fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`);
-            const data = await response.json();
-            
-            // แสดงผลตัวเลข พร้อมใส่ลูกน้ำแยกหลักพัน
-            document.getElementById('visits').innerText = data.value.toLocaleString();
-        } catch (error) {
-            console.error("CounterAPI Error:", error);
-            document.getElementById('visits').innerText = "0";
-        }
-    }
 
-    // เรียกใช้งานฟังก์ชันเมื่อโหลดหน้าเว็บ
-    updateCounter();
-</script>
 <style>
     /* ใช้ ID เพื่อความเฉพาะเจาะจงสูง */
     #tap-overlay-full {

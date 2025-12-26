@@ -877,3 +877,45 @@ function hideOverlay() {
         el.style.display = 'none';
     }, 600);
 }
+
+function typeWriter(id, text, speed = 50) {
+    const ele = document.getElementById(id);
+    if (!ele || !text) return;
+    let i = 0;
+    ele.innerHTML = "";
+    function type() {
+        if (i < text.length) {
+            ele.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
+
+async function fetchAndShowCounter() {
+    const visitsElement = document.getElementById('visits');
+    if (!visitsElement) return;
+
+    try {
+        // 1. เรียกใช้ API เพื่อเพิ่มจำนวนและรับค่ากลับมา
+        const response = await fetch('https://api.counterapi.dev/v1/antagonist-pariomanias-team-2275/visits/up');
+        
+        // 2. ตรวจสอบว่าการเชื่อมต่อสำเร็จหรือไม่
+        if (response.ok) {
+            const data = await response.json();
+            
+            // 3. ดึงค่าจากฟิลด์ count มาแสดงผลที่ id="visits"
+            if (data && data.count !== undefined) {
+                visitsElement.innerText = data.count.toLocaleString();
+            }
+        }
+    } catch (error) {
+        // หากดึงค่าไม่ได้ (เช่น โดนบล็อก) จะแสดงข้อความแจ้งเตือนเบื้องต้น
+        console.error("ไม่สามารถเชื่อมต่อ API ได้:", error);
+        visitsElement.innerText = "เปิดBlockAdsทำควยไร"; 
+    }
+}
+
+// สั่งให้ทำงานทันทีเมื่อหน้าเว็บโหลดเสร็จ
+window.addEventListener('load', fetchAndShowCounter);
