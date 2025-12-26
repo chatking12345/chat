@@ -1965,26 +1965,34 @@ footer a:hover { color: #49654d; }
 }
 .card-rating::before {
   content: "★★★★★";
-  font-family: "Font Awesome 5 Free"; font-weight: 900;
-  /* สีพื้นฐานของดาว (ทองผสมเงา) */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 0.8rem;
+  
+  /* 1. สร้าง Gradient ที่รวมทั้งการตัดดาวตาม Rating และเอฟเฟกต์แสงวิ่ง */
   background: linear-gradient(
     90deg, 
     #ffcc00 0%, 
     #ffffff 50%, 
     #ffcc00 100%
   );
-  background-size: 200% auto; /* เตรียมพื้นที่ให้แสงวิ่ง */
+  
+  /* 2. ขนาดพื้นหลังต้องใหญ่กว่าตัวดาวเพื่อให้แสงวิ่งได้ */
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   
-  /* บรรทัดที่ทำให้วูบวาบ */
+  /* 3. ใช้ animation แสงวิ่งปกติ */
   animation: shine 2s linear infinite;
   
-  /* คุมจำนวนดาวตาม rating เหมือนเดิม */
+  /* 4. จุดตาย: การตัดดาวให้เหลือ 4.5 หรือ 3.7 ต้องใช้ clip-path แบบนี้ */
+  display: inline-block; /* สำคัญมาก: ถ้าไม่ใส่ inline-block บางมือถือจะคำนวณขนาดผิด */
   clip-path: inset(0 calc(100% - (var(--rating) * 20%)) 0 0);
+  
+  /* สำคัญสำหรับ iOS/Safari: ป้องกันบัคการแสดงผล */
+  -webkit-clip-path: inset(0 calc(100% - (var(--rating) * 20%)) 0 0);
 }
 
-/* อนิเมชั่นทำให้แสงวิ่งผ่าน */
 @keyframes shine {
   to { background-position: 200% center; }
 }

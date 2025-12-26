@@ -811,4 +811,18 @@ $(document).on("click", ".close-options", function() {
 $(".song-list").on("click", "li", function () {
   $(".options-panel").fadeOut(200);
 });
- 
+ // แก้ไขอาการขยับเองตอนคลิก (วางต่อท้ายสุดของไฟล์หรือใน $(document).ready)
+$("#player").on("mousedown", function() {
+    const rect = this.getBoundingClientRect();
+    $(this).css({
+        "transition": "none",
+        "transform": "none",
+        "margin": "0",
+        "left": rect.left + "px",
+        "top": rect.top + "px"
+    });
+});
+
+$(document).on("mouseup", function() {
+    $("#player").css("transition", "all 0.5s ease-in-out");
+});
