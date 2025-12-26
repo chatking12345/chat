@@ -863,3 +863,17 @@ $(document).on("mouseup", function() {
     setTimeout(increment, 2000);
 })();
 
+function hideOverlay() {
+    const el = document.getElementById('tap-overlay-full');
+    
+    // 1. ทำให้การคลิก "ทะลุ" ไปด้านหลังได้ทันที
+    el.style.pointerEvents = 'none'; 
+    
+    // 2. เริ่มการจางหาย
+    el.style.opacity = '0';
+    
+    // 3. ลบทิ้งจากระบบเมื่อจางหายสนิท
+    setTimeout(() => {
+        el.style.display = 'none';
+    }, 600);
+}
