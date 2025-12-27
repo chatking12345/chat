@@ -2158,3 +2158,69 @@ font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
         object-fit: cover !important;
     }
 }
+/* --- ส่วนแก้การ์ดปกติให้เรียงแนวนอนสวยๆ ไม่เบี้ยว --- */
+
+/* 1. ล็อกให้ Grid เป็น 5 คอลัมน์แบบไม่งอแง */
+.cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 10px !important;
+    align-items: start !important;
+}
+
+/* 2. ล็อกความสูงการ์ดให้เท่ากันทุกลูก */
+.tech-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important; /* บังคับให้สูงเท่ากันในแถว */
+    min-width: 0 !important;   /* ป้องกันการดัน Grid หลุด */
+    background: #0d0d0d !important;
+    border: 1px solid #222 !important;
+}
+
+/* 3. ล็อกขนาดรูปภาพ (จุดสำคัญที่ทำให้เบี้ยว) */
+.card-image-wrapper {
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important; /* บังคับสัดส่วนรูปภาพให้เท่ากันหมด */
+    overflow: hidden !important;
+}
+
+.card-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* ถ้ารูปไม่พอดีให้ตัดกลาง ไม่ให้รูปยืด */
+}
+
+/* 4. จัดการเนื้อหาภายในการ์ด */
+.card-content {
+    padding: 8px !important;
+    flex-grow: 1 !important; /* ดันเนื้อหาให้เต็ม */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.card-title {
+    font-size: 0.8rem !important; /* ลดขนาดชื่อเกมเพื่อไม่ให้กินพื้นที่หลายบรรทัด */
+    margin: 5px 0 !important;
+    white-space: nowrap !important; /* บังคับบรรทัดเดียว */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; /* ถ้าชื่อยาวเกินให้ขึ้น ... */
+}
+
+/* 5. ปรับพิเศษสำหรับมือถือ (จอแคบมาก) */
+@media (max-width: 768px) {
+    .cards-grid {
+        gap: 5px !important;
+        padding: 5px !important;
+    }
+    
+    .card-title {
+        font-size: 0.55rem !important; /* เล็กสุดๆ เพื่อให้เห็นครบ 5 ใบ */
+    }
+
+    /* ซ่อนส่วนเกินที่ไม่จำเป็นในมือถือ */
+    .card-tag, .card-rating, .card-desc, .card-link, .card-overlay {
+        display: none !important;
+    }
+}
