@@ -2171,3 +2171,54 @@ font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
         margin-top: 4px !important;
     }
 }
+.category-section {
+    margin-top: 50px;
+    width: 100%;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 20px;
+}
+
+.category-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.category-icon {
+    color: #ff0000;
+    font-size: 1.4rem;
+    filter: drop-shadow(0 0 5px #ff0000);
+}
+
+.category-text {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.category-line {
+    height: 2px;
+    flex-grow: 1;
+    background: linear-gradient(90deg, #ff0000, transparent);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .category-text {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+    .category-header {
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+}
