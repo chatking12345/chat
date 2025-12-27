@@ -570,6 +570,66 @@ $(document).ready(function () {
       src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/The%20Neighbourhood%20-%20Leaving%20Tonight%20(Official%20Audio).mp3"
     },
     {
+      name: "Daddy Issues",
+      artist: "The Neighbourhood",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/The%20Neighbourhood%20-%20Daddy%20Issues.mp3"
+    },
+    {
+      name: "To You 2000…or…20000 Years From Now…",
+      artist: "Linked Horizon",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/Attack%20on%20Titan%20Season%204%20Part%204%20-%20''To%20You%202000%E2%80%A6or%E2%80%A620000%20Years%20From%20Now%E2%80%A6''%20by%20Linked%20Horizon%20(Lyrics).mp3"
+    },
+    {
+      name: "sex, drugs, etc.",
+      artist: "Beach Weather",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/Beach%20Weather%20-%20sex%2C%20drugs%2C%20etc.%20(Lyrics).mp3"
+    },
+    {
+      name: "lovely",
+      artist: "Billie Eilish, Khalid",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/Billie%20Eilish%2C%20Khalid%20-%20lovely.mp3"
+    },
+    {
+      name: "Call of Silence",
+      artist: "Sawano Hiroyuki",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/Call%20of%20Silence.mp3"
+    },
+    {
+      name: "Roommates",
+      artist: "Malcolm Todd",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/Malcolm%20Todd%20-%20Roommates.mp3"
+    },
+    {
+      name: "Gate of Steiner",
+      artist: "Eri Sasaki",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/Steins%3BGate%200%20Episode%2023%20Ending%20Song%20_%20Gate%20of%20Steiner%20by%20Eri%20Sasaki.mp3"
+    },
+    {
+      name: "Oratorio The World God Only Knows",
+      artist: "ELISA",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/The%20World%20God%20Only%20Knows%20(Full%20OP%20Lyrics).mp3"
+    },
+    {
+      name: "Relax.",
+      artist: "Vacations",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/Vacations%20-%20Relax.mp3"
+    },
+    {
+      name: "Would U Mind",
+      artist: "Yipsy",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/Would%20You%20Mind.mp3"
+    },
+    {
+      name: "Save Me",
+      artist: "XXXTENTACION",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/XXXTENTACION%20-%20Save%20Me%20(Audio).mp3"
+    },
+    {
+      name: "Fallen Star",
+      artist: "The Neighbourhood",
+      src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/the%20neighbourhood%20-%20fallen%20star%20(%F0%9D%99%A8%F0%9D%99%A1%F0%9D%99%A4%F0%9D%99%AC%F0%9D%99%9A%F0%9D%99%99%2B%F0%9D%99%A7%F0%9D%99%9A%F0%9D%99%AB%F0%9D%99%9A%F0%9D%99%A7%F0%9D%99%97).mp3"
+    },
+    {
       name: "last summer",
       artist: "ooes",
       src: "https://raw.githubusercontent.com/chatking12345/chat/main/song/last%20summer%20(sped%20up).mp3"
