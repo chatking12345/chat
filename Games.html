@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Games | Chat.exe</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="images/img.jpg">
+
+    <style>
+        /* CSS เฉพาะสำหรับหน้าแยก */
+        body { background: #050505; color: #fff; overflow-x: hidden; }
+        
+        .games-page-container {
+            padding: 120px 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Glitch Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .glitch-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            position: relative;
+            text-shadow: 0.05em 0 0 #0ff, -0.05em -0.025em 0 #f0f;
+            animation: glitch-anim 2s infinite;
+        }
+
+        @keyframes glitch-anim {
+            0% { text-shadow: 0.05em 0 0 #0ff, -0.05em -0.025em 0 #f0f; }
+            15% { text-shadow: -0.05em -0.025em 0 #0ff, 0.025em 0.025em 0 #f0f; }
+            50% { text-shadow: 0.025em 0.05em 0 #0ff, 0.05em 0 0 #f0f; }
+            100% { text-shadow: -0.025em 0 0 #0ff, -0.025em -0.025em 0 #f0f; }
+        }
+
+        .back-nav {
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            color: #0ff;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #0ff;
+            padding: 8px 15px;
+            transition: 0.3s;
+            box-shadow: 2px 2px 0 #f0f;
+        }
+
+        .back-btn:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: none;
+            transform: translate(2px, 2px);
+        }
+
+        /* Grid การ์ด */
+        .all-games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .glitch-title { font-size: 1.8rem; }
+            .all-games-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+            .games-page-container { padding-top: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">Chat.exe<span class="brand-dot">.</span></div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="games-page-container">
+        
+        <div class="back-nav">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> RETURN</a>
+        </div>
+
+        <div class="page-header">
+            <h1 class="glitch-title">MY GAMES COLLECTION</h1>
+            <p style="color: #888; font-family: 'Orbitron'; font-size: 0.7rem; margin-top: 10px;">CHAt.EXE</p>
+        </div>
+
+        <div id="full-games-grid" class="all-games-grid">
+            
+            <div class="tech-card">
+                <div class="card-image-wrapper">
+                    <img src="images/insanity.jpg" alt="Insanity" class="card-img">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-tag">Uri Games</div>
+                    <h3 class="card-title">Insanity</h3>
+                    <div class="card-rating" style="--rating: 3.7;">3.7</div>
+                    <a href="#" class="card-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="card-image-wrapper">
+                    <img src="images/Paranoiac.jpg" alt="Paranoiac" class="card-img">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-tag">Uri Games</div>
+                    <h3 class="card-title">Paranoiac</h3>
+                    <div class="card-rating" style="--rating: 3.6;">3.6</div>
+                    <a href="#" class="card-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="card-image-wrapper">
+                    <img src="images/mermaid.jpg" alt="Mermaid Swamp" class="card-img">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-tag">Uri Games</div>
+                    <h3 class="card-title">Mermaid Swamp</h3>
+                    <div class="card-rating" style="--rating: 4.8;">4.8</div>
+                    <a href="#" class="card-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            </div>
+    </main>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const grid = document.getElementById('full-games-grid');
+        if (grid) {
+            const cards = Array.from(grid.getElementsByClassName('tech-card'));
+            cards.sort((a, b) => {
+                const rA = parseFloat(a.querySelector('.card-rating').innerText) || 0;
+                const rB = parseFloat(b.querySelector('.card-rating').innerText) || 0;
+                return rB - rA;
+            });
+            grid.innerHTML = "";
+            cards.forEach(card => grid.appendChild(card));
+        }
+    });
+    </script>
+
+</body>
+</html>
