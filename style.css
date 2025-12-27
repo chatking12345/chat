@@ -2099,76 +2099,74 @@ font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
 
 /* --- ส่วนที่แทรกเพิ่มเพื่อบังคับ Layout 5 คอลัมน์ และ Podium หน้ากระดาน --- */
 
-/* --- ฉบับอัปเกรด Podium ให้สวยคมในมือถือ --- */
+/* --- ฉบับแก้ไข Podium ล้นจอ: บีบให้พอดี 3 ใบในแถวเดียว --- */
 
 .podium-container {
     display: flex !important;
     flex-direction: row !important;
     justify-content: center !important;
     align-items: flex-end !important;
-    gap: 12px !important; /* เพิ่มช่องว่างเล็กน้อยให้ไม่ดูอึดอัด */
+    gap: 4px !important; /* ลดช่องว่างระหว่างการ์ดให้เหลือน้อยที่สุด */
     width: 100% !important;
-    padding: 20px 5px !important;
-    perspective: 1000px; /* เพิ่มมิติความลึก */
+    max-width: 100vw !important; /* บังคับไม่ให้กว้างเกินจอ */
+    padding: 20px 2px !important; /* ลด padding ซ้ายขวา */
+    box-sizing: border-box !important;
+    overflow: hidden !important; /* ป้องกันส่วนที่เกินล้นออก */
 }
 
 .podium-card {
-    flex: 1 !important;
-    min-width: 0 !important;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); /* เพิ่มเงาให้การ์ดดูโดดเด่น */
+    flex: 1 1 0 !important; /* บังคับให้ทั้ง 3 ใบแบ่งพื้นที่เท่ากันเป๊ะ */
+    min-width: 0 !important; /* สำคัญมาก: ยอมให้การ์ดหดตัวได้ต่ำกว่าเนื้อหาข้างใน */
+    position: relative;
 }
 
-/* บังคับอันดับ 1: เด่นที่สุด ตรงกลาง และมีออร่า */
+/* อันดับ 1: ตรงกลางและเด่นที่สุด */
 .rank-1 { 
     order: 2 !important; 
-    transform: translateY(-25px) translateZ(20px) !important; 
+    transform: translateY(-15px) scale(1.1) !important; 
     z-index: 3;
-}
-.rank-1 .tech-card {
-    border-color: #ffd700 !important; /* ขอบทองสำหรับที่ 1 */
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2) !important;
 }
 
 /* อันดับ 2: ซ้าย */
 .rank-2 { 
     order: 1 !important; 
     z-index: 2;
-    transform: translateY(-5px) !important;
 }
 
-/* อันดับ 3: ขวา และถอยไปข้างหลังนิดนึง */
+/* อันดับ 3: ขวา */
 .rank-3 { 
     order: 3 !important; 
-    transform: scale(0.9) translateY(5px) !important; 
     z-index: 1;
-    opacity: 0.9; /* ลดความเด่นลงหน่อย */
 }
 
-/* ปรับแต่ง Trophy ในมือถือให้ดูแวววาว */
-.trophy-wrapper {
-    margin-bottom: 5px !important;
-    filter: drop-shadow(0 0 8px currentColor);
-}
-
+/* ปรับแต่งเนื้อหาภายในการ์ดให้จิ๋วแต่แจ๋ว */
 @media (max-width: 768px) {
-    .podium-container {
-        gap: 6px !important; /* ในมือถือลดช่องว่างลงเพื่อประหยัดพื้นที่ */
-    }
-    
-    .rank-1 {
-        transform: translateY(-18px) scale(1.05) !important; /* ให้ที่ 1 ขยายใหญ่กว่าเพื่อนเล็กน้อย */
+    .podium-card .card-content {
+        padding: 4px !important; /* ลดพื้นที่ว่างในตัวการ์ด */
     }
 
-    /* ปรับให้รูปในการ์ด Podium เต็มจอขึ้น */
-    .podium-card .card-image-wrapper {
-        aspect-ratio: 1 / 1 !important; /* เปลี่ยนเป็นสี่เหลี่ยมจตุรัสสำหรับ Podium จะดูสวยกว่า */
-        border-radius: 4px !important;
-    }
-    
     .podium-card .card-title {
-        font-size: 0.45rem !important;
-        text-align: center !important;
-        margin-top: 4px !important;
+        font-size: 0.5rem !important; /* ลดขนาดชื่อเกมให้เล็กลงเพื่อไม่ให้ดันการ์ดขยาย */
+        white-space: nowrap !important; /* บังคับบรรทัดเดียว */
+        overflow: hidden !important;
+        text-overflow: ellipsis !important; /* ถ้าชื่อยาวเกินให้เป็น ... */
+        display: block !important;
+    }
+
+    .podium-card .card-rating {
+        font-size: 0.5rem !important;
+        padding: 1px 3px !important;
+    }
+
+    /* ซ่อนปุ่ม View Details เฉพาะใน Podium บนมือถือเพื่อประหยัดพื้นที่ */
+    .podium-card .card-link {
+        display: none !important;
+    }
+
+    /* ปรับ Trophy ให้เล็กลง */
+    .trophy-wrapper {
+        font-size: 0.8rem !important;
+        margin-bottom: 2px !important;
     }
 }
 .category-section {
@@ -2222,3 +2220,4 @@ font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
         margin-bottom: 15px;
     }
 }
+
