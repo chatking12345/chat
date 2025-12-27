@@ -2097,3 +2097,64 @@ font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
     }
 }
 
+/* --- ส่วนที่แทรกเพิ่มเพื่อบังคับ Layout 5 คอลัมน์ และ Podium หน้ากระดาน --- */
+
+/* 1. บังคับ Podium ให้เรียง 2-1-3 แนวนอนเสมอทุกหน้าจอ */
+.podium-container {
+    display: flex !important;
+    flex-direction: row !important; /* บังคับแนวนอน */
+    justify-content: center !important;
+    align-items: flex-end !important;
+    gap: 8px !important;
+    width: 100% !important;
+}
+
+.podium-card {
+    flex: 1 !important;
+    min-width: 0 !important; /* ยอมให้บีบตัวได้ */
+}
+
+/* บังคับอันดับ 1 อยู่กลางและสูงกว่า */
+.rank-1 { order: 2 !important; transform: translateY(-15px) !important; }
+.rank-2 { order: 1 !important; }
+.rank-3 { order: 3 !important; transform: scale(0.9) !important; }
+
+/* 2. บังคับการ์ดปกติให้เรียง 5 ใบต่อแถวเสมอทุกหน้าจอ */
+.cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important; /* บังคับ 5 คอลัมน์ */
+    gap: 10px !important;
+    width: 100% !important;
+}
+
+/* 3. ปรับแต่งพิเศษสำหรับหน้าจอมือถือ (เพื่อไม่ให้ภาพเละ) */
+@media (max-width: 768px) {
+    /* ปรับฟอนต์หัวข้อการ์ดให้เล็กลงมากในมือถือเพื่อให้เห็นครบ 5 ใบ */
+    .tech-card .card-title {
+        font-size: 0.5rem !important;
+        line-height: 1 !important;
+    }
+    
+    /* ซ่อนรายละเอียดการ์ดในมือถือ (Rating, Tag, Desc) เพื่อให้เหลือแต่รูปสวยๆ */
+    .podium-card .card-content,
+    .cards-grid .card-tag,
+    .cards-grid .card-rating,
+    .cards-grid .card-desc,
+    .cards-grid .card-link {
+        display: none !important;
+    }
+    
+    /* ปรับขนาดถ้วยรางวัลในมือถือ */
+    .trophy-icon {
+        font-size: 1.5rem !important;
+    }
+    .rank-number {
+        font-size: 0.8rem !important;
+    }
+
+    /* จัดความสูงรูปภาพให้เท่ากัน */
+    .card-img {
+        height: 100px !important; 
+        object-fit: cover !important;
+    }
+}
