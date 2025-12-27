@@ -2243,4 +2243,72 @@ font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
         margin-bottom: 15px;
     }
 }
+.cyber-glitch {
+    position: relative;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    /* แสงนีออนพื้นฐาน */
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8),
+                 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+/* สร้างเลเยอร์เงาสีแดงแบบจางๆ (ไม่กวนตา) */
+.cyber-glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #ff003c;
+    z-index: -1;
+    opacity: 0;
+}
+
+/* จังหวะกระตุกแบบ Slice (เกิดเป็นพักๆ ไม่สั่นตลอดเวลา) */
+.cyber-glitch:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #0ff;
+    z-index: -2;
+    clip-path: inset(50% 0 30% 0); /* ตัดส่วนกลาง */
+    opacity: 0;
+}
+
+/* Animation: นานๆ จะกระตุกทีให้ดูสมจริง */
+.cyber-glitch {
+    animation: neon-pulse 1.5s infinite alternate;
+}
+
+@keyframes neon-pulse {
+    0%, 100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
+    50% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff; }
+}
+
+/* เอฟเฟกต์ Glitch คมๆ เวลา Hover */
+.cyber-glitch:hover::before {
+    opacity: 1;
+    animation: glitch-sharp 0.3s infinite;
+}
+
+.cyber-glitch:hover::after {
+    opacity: 1;
+    animation: glitch-sharp 0.3s infinite reverse;
+}
+
+@keyframes glitch-sharp {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 2px); }
+    40% { transform: translate(-3px, -2px); }
+    60% { transform: translate(3px, 2px); }
+    80% { transform: translate(3px, -2px); }
+    100% { transform: translate(0); }
+}
 
