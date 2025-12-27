@@ -2099,24 +2099,75 @@ font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
 
 /* --- ส่วนที่แทรกเพิ่มเพื่อบังคับ Layout 5 คอลัมน์ และ Podium หน้ากระดาน --- */
 
-/* 1. บังคับ Podium ให้เรียง 2-1-3 แนวนอนเสมอทุกหน้าจอ */
+/* --- ฉบับอัปเกรด Podium ให้สวยคมในมือถือ --- */
+
 .podium-container {
     display: flex !important;
-    flex-direction: row !important; /* บังคับแนวนอน */
+    flex-direction: row !important;
     justify-content: center !important;
     align-items: flex-end !important;
-    gap: 8px !important;
+    gap: 12px !important; /* เพิ่มช่องว่างเล็กน้อยให้ไม่ดูอึดอัด */
     width: 100% !important;
+    padding: 20px 5px !important;
+    perspective: 1000px; /* เพิ่มมิติความลึก */
 }
 
 .podium-card {
     flex: 1 !important;
-    min-width: 0 !important; /* ยอมให้บีบตัวได้ */
+    min-width: 0 !important;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); /* เพิ่มเงาให้การ์ดดูโดดเด่น */
 }
 
-/* บังคับอันดับ 1 อยู่กลางและสูงกว่า */
-.rank-1 { order: 2 !important; transform: translateY(-15px) !important; }
-.rank-2 { order: 1 !important; }
-.rank-3 { order: 3 !important; transform: scale(0.9) !important; }
+/* บังคับอันดับ 1: เด่นที่สุด ตรงกลาง และมีออร่า */
+.rank-1 { 
+    order: 2 !important; 
+    transform: translateY(-25px) translateZ(20px) !important; 
+    z-index: 3;
+}
+.rank-1 .tech-card {
+    border-color: #ffd700 !important; /* ขอบทองสำหรับที่ 1 */
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2) !important;
+}
 
+/* อันดับ 2: ซ้าย */
+.rank-2 { 
+    order: 1 !important; 
+    z-index: 2;
+    transform: translateY(-5px) !important;
+}
 
+/* อันดับ 3: ขวา และถอยไปข้างหลังนิดนึง */
+.rank-3 { 
+    order: 3 !important; 
+    transform: scale(0.9) translateY(5px) !important; 
+    z-index: 1;
+    opacity: 0.9; /* ลดความเด่นลงหน่อย */
+}
+
+/* ปรับแต่ง Trophy ในมือถือให้ดูแวววาว */
+.trophy-wrapper {
+    margin-bottom: 5px !important;
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+@media (max-width: 768px) {
+    .podium-container {
+        gap: 6px !important; /* ในมือถือลดช่องว่างลงเพื่อประหยัดพื้นที่ */
+    }
+    
+    .rank-1 {
+        transform: translateY(-18px) scale(1.05) !important; /* ให้ที่ 1 ขยายใหญ่กว่าเพื่อนเล็กน้อย */
+    }
+
+    /* ปรับให้รูปในการ์ด Podium เต็มจอขึ้น */
+    .podium-card .card-image-wrapper {
+        aspect-ratio: 1 / 1 !important; /* เปลี่ยนเป็นสี่เหลี่ยมจตุรัสสำหรับ Podium จะดูสวยกว่า */
+        border-radius: 4px !important;
+    }
+    
+    .podium-card .card-title {
+        font-size: 0.45rem !important;
+        text-align: center !important;
+        margin-top: 4px !important;
+    }
+}
