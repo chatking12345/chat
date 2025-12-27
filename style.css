@@ -2097,116 +2097,26 @@ font-size: 0.75rem;   /* ลดขนาดตัวเลขลง */
     }
 }
 
-/* --- ฉบับสมบูรณ์: ลบขอบดำ ล็อกรูปแนวนอน และโชว์ Text ครบถ้วน --- */
+/* --- ส่วนที่แทรกเพิ่มเพื่อบังคับ Layout 5 คอลัมน์ และ Podium หน้ากระดาน --- */
 
-/* 1. บังคับ Podium ให้เรียง 2-1-3 แนวนอนเสมอ */
+/* 1. บังคับ Podium ให้เรียง 2-1-3 แนวนอนเสมอทุกหน้าจอ */
 .podium-container {
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: row !important; /* บังคับแนวนอน */
     justify-content: center !important;
     align-items: flex-end !important;
     gap: 8px !important;
     width: 100% !important;
-    margin-bottom: 25px !important;
 }
 
 .podium-card {
     flex: 1 !important;
-    min-width: 0 !important;
+    min-width: 0 !important; /* ยอมให้บีบตัวได้ */
 }
 
+/* บังคับอันดับ 1 อยู่กลางและสูงกว่า */
 .rank-1 { order: 2 !important; transform: translateY(-15px) !important; }
 .rank-2 { order: 1 !important; }
 .rank-3 { order: 3 !important; transform: scale(0.9) !important; }
 
-/* 2. บังคับ Grid 5 คอลัมน์ และล็อกความสูงการ์ดให้เท่ากัน */
-.cards-grid {
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    gap: 8px !important;
-    width: 100% !important;
-}
 
-.tech-card {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-    background: #0d0d0d !important;
-    border: 1px solid #222 !important;
-    overflow: hidden !important;
-    min-width: 0 !important;
-}
-
-/* 3. จัดการรูปภาพ (ลบขอบดำ และล็อกเป็นแนวนอน) */
-.card-image-wrapper {
-    width: 100% !important;
-    aspect-ratio: 16 / 9 !important; /* ล็อกสัดส่วนแนวนอนเป๊ะๆ */
-    position: relative !important;
-    background: #000 !important;
-    overflow: hidden !important;
-}
-
-.card-img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important; /* ขยายรูปให้เต็มพื้นที่ ไม่ให้เหลือขอบดำ */
-    object-position: center !important;
-    display: block !important;
-}
-
-/* 4. จัดการเนื้อหาและข้อความ */
-.card-content {
-    padding: 6px !important;
-    flex-grow: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 2px !important;
-}
-
-.card-title {
-    font-size: 0.75rem !important;
-    margin: 2px 0 !important;
-    line-height: 1.1 !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2; /* ชื่อเกมไม่เกิน 2 บรรทัด */
-    -webkit-box-orient: vertical;
-    overflow: hidden !important;
-    white-space: normal !important;
-}
-
-/* 5. ปรับพิเศษสำหรับมือถือ (แสดงผล 5 ใบพร้อม Text จิ๋ว) */
-@media (max-width: 768px) {
-    .cards-grid {
-        gap: 4px !important;
-    }
-
-    .card-content {
-        padding: 4px !important;
-    }
-
-    /* คืนค่า Text ทุกอย่างให้แสดงผล */
-    .card-tag, .card-rating, .card-link, .card-desc {
-        display: block !important;
-        font-size: 0.4rem !important; /* ขนาดจิ๋วเพื่อให้พอดี */
-        margin: 0 !important;
-        line-height: 1 !important;
-    }
-
-    .card-title {
-        font-size: 0.45rem !important;
-        -webkit-line-clamp: 2;
-    }
-
-    /* ซ่อนเฉพาะคำบรรยายที่ยาวเกินไปจริงๆ (ถ้ามี) */
-    .card-desc {
-        display: none !important; 
-    }
-
-    .card-link {
-        margin-top: 2px !important;
-        font-size: 0.38rem !important;
-    }
-
-    .trophy-icon { font-size: 1.2rem !important; }
-    .rank-number { font-size: 0.7rem !important; }
-}
